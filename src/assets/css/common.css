@@ -1,0 +1,8 @@
+body {
+    font-size: 14px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+
+:root {
+    --primary-color: rgb(114, 176, 216);
+}

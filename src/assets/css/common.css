@@ -5,4 +5,5 @@ body {
 
 :root {
     --primary-color: rgb(114, 176, 216);
+    --van-search-left-icon-color: var(--primary-color) !important;
 }

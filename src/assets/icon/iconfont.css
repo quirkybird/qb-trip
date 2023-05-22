@@ -12,6 +12,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-location:before {
+  content: "\e627";
+}
+.icon-shouhuodizhi:before {
+  content: "\e7f6";
+}
 
 .icon-quanbudingdan:before {
   content: "\e7f2";

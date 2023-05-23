@@ -16,7 +16,7 @@
     </div>
     <div class="content">
       <template v-for="(item, key, index) in allCities" :key="index">
-      <city-group :group-data="currentGroup" v-show="key === active"></city-group>
+      <city-group :group-data="item" v-show="key === active"></city-group>
       </template>
     </div>
   </div>
@@ -27,7 +27,7 @@
   import { ref, computed } from "vue";
   import { storeToRefs } from "pinia";
   import useCityStore from "@/stores/modules/city";
-  import CityGroup from "./cpns/cityGroup.vue"
+  import CityGroup from "./cpns/CityGroup.vue"
   const router = useRouter();
   const searchValue = ref("");
   // 取消后返回首页
@@ -63,6 +63,10 @@
 <style scoped>
   .city-list {
     --van-tabs-line-height: 30px;
+  }
+  .top {
+    position: relative;
+    z-index: 2;
   }
   .content {
     height: calc(100vh - 98px);

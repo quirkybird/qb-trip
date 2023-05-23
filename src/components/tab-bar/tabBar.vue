@@ -27,6 +27,7 @@
 
 <style scoped>
     .tab-bar {
+        background-color: #fff;
         position: fixed;
         bottom: 0;
         left: 0;

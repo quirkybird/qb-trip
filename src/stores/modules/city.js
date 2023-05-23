@@ -4,7 +4,11 @@ import { getCityAll } from "@/service";
 const useCityStore = defineStore("city", {
     // 箭头函数简写，返回一个数组字面量
     state: () => ({
-        allCities: {}
+        allCities: {},
+        currentCity: {
+            cityId: 48,
+            cityName: "北京"
+        }
     }),
     actions: {
        async fetchAllCitiesData() {

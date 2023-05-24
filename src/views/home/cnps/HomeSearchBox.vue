@@ -6,7 +6,7 @@
     </div>
     <!-- 位置信息 -->
     <div class="location grey-bottom-line">
-      <span class="city" @click="selectCity">{{ currentCityName }}</span>
+      <span class="city" @click="selectCity">{{ currentCity.cityName }}</span>
       <div class="position" @click="getCurrentPosition">
         <span class="text">我的位置</span>
         <i class="iconfont icon-location"></i>
@@ -33,7 +33,7 @@
       <span class="grey-text">人数不限</span>
     </div>
     <!-- 关键字/位置/民宿名 -->
-    <div class="recommend">
+    <div class="recommend grey-bottom-line">
       <span class="grey-text">关键字/位置/民宿名</span>
     </div>
     <!-- 热门建议 -->
@@ -49,6 +49,10 @@
           {{ item.tagText.text }}
         </div>
       </template>
+    </div>
+    <!-- 搜索框 -->
+    <div class="search-btn">
+      <div class="btn" @click="searchBtnClick">开始搜索</div>
     </div>
     <!-- 日历，做日期选择 -->
     <van-calendar
@@ -75,9 +79,9 @@
   }
   // 获取选取后对应的城市
   const cityStore = useCityStore();
-  const currentCityName = cityStore.currentCity.cityName;
+  const currentCity = cityStore.currentCity;
   function getCurrentPosition() {
-    // 获取当前位置的API 三个参数 success error options
+  // 获取当前位置的API 三个参数 success error options
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const crd = pos.coords;
@@ -129,6 +133,17 @@
   const hotSuggestStore = useHotSuggestStore();
   hotSuggestStore.fetchHotSuggestData();
   const { hotSuggests } = storeToRefs(hotSuggestStore);
+
+  // 开始搜索
+  const searchBtnClick = () => {
+    router.push({
+      path: "/search",
+      query: {
+          startDate:startDate.value,
+          endDate: endDate.value,
+      }
+    }) 
+  }
 </script>
 
 <style scoped>
@@ -143,7 +158,7 @@
   .location {
     font-size: 16px;
     height: 40px;
-    padding: 0 26px;
+    padding: 5px 26px;
     display: flex;
     align-items: center;
   }
@@ -166,7 +181,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5px 26px;
+    padding: 10px 26px;
   }
   .date-info {
     width: 60%;
@@ -208,5 +223,22 @@
     padding: 5px;
     margin: 4px;
     border-radius: 12px;
+  }
+
+  /* 开始搜索按钮 */
+  .search-btn {
+    padding: 5px 26px;
+  }
+  .search-btn .btn {
+    width: 100%;
+    height: 38px;
+    max-height: 50px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 20px;
+    color: #fff;
+    background-image: linear-gradient(90deg, rgb(75, 166, 248), rgb(0, 111, 178));
   }
 </style>

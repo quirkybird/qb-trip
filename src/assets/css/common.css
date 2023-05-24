@@ -1,14 +1,16 @@
 body {
-    font-size: 14px;
+  font-size: 14px;
+  overflow: hidden;
 }
 
 :root {
-    --primary-color: rgb(114, 176, 216);
-    --grey-color: rgb(247, 247, 247);
-    --grey-font-color: rgb(150, 151, 166);
-    --van-search-left-icon-color: var(--primary-color) !important;
+  --primary-color: rgb(114, 176, 216);
+  --grey-color: rgb(247, 247, 247);
+  --grey-font-color: rgb(150, 151, 166);
+  --van-search-left-icon-color: var(--primary-color) !important;
 }
 
 .grey-bottom-line {
-    border: 1px solid var(--grey-color);
+  border: 1px solid var(--grey-color);
 }
+

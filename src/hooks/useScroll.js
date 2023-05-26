@@ -1,13 +1,15 @@
 import { onMounted, onUnmounted, ref } from "vue";
 
 export default function useScroll(element) {
-    const isReachBottom = ref(false)
+    let isReachBottom = ref(false)
+    let clientHeight  = ref(0)
+    let scrollTop  = ref(0)
+    let scrollHeight  = ref(0)
     const scrollListHandler = (event) => {
-        const clientHeight = event.target.clientHeight
-        const scrollTop = event.target.scrollTop
-        const scrollHeight = event.target.scrollHeight
-        console.log(clientHeight+scrollTop, scrollHeight)
-        if(clientHeight + scrollTop+1 >= scrollHeight) {
+         clientHeight.value = event.target.clientHeight
+         scrollTop.value = event.target.scrollTop
+         scrollHeight.value = event.target.scrollHeight
+        if(clientHeight.value + scrollTop.value+1 >= scrollHeight.value) {
             isReachBottom.value = true
             console.log("到底部了")
         }
@@ -15,6 +17,6 @@ export default function useScroll(element) {
     }
         element.addEventListener("scroll", scrollListHandler)
 
-    return { isReachBottom }
+    return { isReachBottom, clientHeight, scrollTop, scrollHeight }
 }
 

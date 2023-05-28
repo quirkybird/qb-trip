@@ -2,7 +2,7 @@
   <div class="home-list">
   <span class="text">房间列表</span>
     <template v-for="(house, index) in houseData">
-    <div class="list">
+    <div class="list" @click="houseDetailsInfo(house.data.houseId)">
         <div class="house-img">
             <img :src="house.data.image?.url" alt="">
         </div>
@@ -29,11 +29,16 @@
 <script setup>
 import useHomeListStore from "@/stores/modules/home/homeList";
   import { storeToRefs } from "pinia";
+  import { useRouter } from "vue-router";
     // 获取请求数据
   const homeListStore = useHomeListStore();
   homeListStore.fetchHouseData(1);
   const { houseData } = storeToRefs(homeListStore)
-
+    
+  const router = useRouter()
+  const houseDetailsInfo =  (houseId) => {
+    router.push("/details/" + houseId)
+  }
     //加载更多
     // let currentPage = 1
     // const moreHouseBtn = () => {

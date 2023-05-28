@@ -17,12 +17,12 @@
       <div class="date-info" @click="showCalendar = true">
         <div class="start">
           <span class="grey-text">入住</span>
-          <span class="date">{{ startDate }}</span>
+          <span class="date">{{ startDateStr }}</span>
         </div>
         <span>至</span>
         <div class="end">
           <span class="grey-text">离店</span>
-          <span class="date">{{ endDate }}</span>
+          <span class="date">{{ endDateStr }}</span>
         </div>
       </div>
       <div class="stay-time">共{{ diffCount }}晚</div>
@@ -70,8 +70,9 @@
   import useHotSuggestStore from "@/stores/modules/home/hotSuggest";
   import { useRouter } from "vue-router";
   import { formatMonthDay, getDiffDays } from "@/utils/format_date";
-  import { ref } from "vue";
+  import { ref,computed } from "vue";
   import { storeToRefs } from "pinia";
+  import  useMainStore  from "@/stores/modules/mian"
   const router = useRouter();
   // 选择城市
   function selectCity() {
@@ -103,19 +104,20 @@
   //   是否显示选择日期模块
   const showCalendar = ref(false);
 
-  //时间的格式化处理
-  const nowDate = new Date();
-  const startDate = ref(formatMonthDay(nowDate));
-  const newDate = nowDate.setDate(nowDate.getDate() + 1);
-  const endDate = ref(formatMonthDay(newDate));
+  //时间的格式化处理 
+  const mainStore = useMainStore()
+  const { startDate, endDate } = storeToRefs(mainStore)
+
+  const startDateStr = computed(() => formatMonthDay(startDate.value))
+  const endDateStr = computed(() => formatMonthDay(endDate.value))
   //日期选择模块
   const diffCount = ref(1);
   //确认选择
   const onConfirm = (value) => {
     const selectStartDate = value[0];
     const selectEndDate = value[1];
-    startDate.value = formatMonthDay(selectStartDate);
-    endDate.value = formatMonthDay(selectEndDate);
+    mainStore.startDate = selectStartDate
+    mainStore.endDate = selectEndDate
     diffCount.value = getDiffDays(selectStartDate, selectEndDate);
     showCalendar.value = false;
   };

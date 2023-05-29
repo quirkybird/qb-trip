@@ -6,13 +6,19 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    <house-swipe :house="houseDetailsStore.house" />
+    <template v-if="houseDetailsStore.house">
+        <house-swipe :house="houseDetailsStore.house" />
+        <house-info :house="houseDetailsStore.house" />
+    </template>
+     
   </div>
 </template>
 
 <script setup>
   import HouseSwipe from "./cpns/HouseSwipe.vue";
+  import HouseInfo from "./cpns/HouseInfo.vue";
   import router from "@/router";
+  import { computed } from "vue"
   import useHouseDetailsStore from "@/stores/modules/house/houseDetails";
   import { useRoute } from "vue-router";
   const onClickLeft = () => {
@@ -20,7 +26,8 @@
   };
   const route = useRoute();
   const houseDetailsStore = useHouseDetailsStore();
-  houseDetailsStore.fetchHouseDetails(route.params.id).then(() => console.log(houseDetailsStore.house));
+  houseDetailsStore.fetchHouseDetails(route.params.id);
+  
 </script>
 
 <style scoped></style>

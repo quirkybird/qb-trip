@@ -4,7 +4,7 @@ import { getHouseDtails } from "@/service/module/home/houseDetails";
 
 const useHouseDetailsStore = defineStore("DetailsStore", {
   state: () => ({
-    house: {},
+    house: null,
   }),
   actions: {
     async fetchHouseDetails(houseId) {

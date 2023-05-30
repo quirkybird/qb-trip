@@ -15,13 +15,22 @@
         </div>
       </template>
     </div>
-    <div class="comment-brief">
-      <span>{{ topModule.commentBrief.overall }}</span>
-      <span>{{ topModule.commentBrief.scoreTitle }}</span>
-      <span>{{ topModule.commentBrief.commentBrief }}</span>
-      <span>{{ topModule.commentBrief.totalCount }}</span>
+    <div class="comment-brief clearfix">
+      <div class="left">
+        <span class="overall">{{ topModule.commentBrief.overall }}</span>
+        <span class="scoreTitle">{{ topModule.commentBrief.scoreTitle }}</span>
+        <span class="comment">"{{ topModule.commentBrief.commentBrief }}"</span>
+      </div>
+      <div class="right">
+        <span>{{ topModule.commentBrief.totalCount }}条评论(箭头)</span>
+      </div>
     </div>
-    <div></div>
+    <div class="location">
+      <div class="loc-left">
+        <div>{{ topModule.nearByPosition.address }}</div>
+      </div>
+      <div class="loc-right">地图•周边(箭头)</div>
+    </div>
   </div>
 </template>
 
@@ -39,6 +48,9 @@
 </script>
 
 <style scoped>
+  .house-infos{
+    background-color: #fff;
+  }
   .house-name {
     font-size: 20px;
     font-weight: 700;
@@ -59,9 +71,44 @@
     text-align: center;
     font-size: 12px;
   }
+  .left {
+    float: left;
+    line-height: 1rem;
+  }
+  .overall {
+    font-size: 20px;
+  }
+  .comment {
+    font-weight: 300;
+    font-size: 12px;
+    padding: 0 0.4rem;
+    color: var(--grey-font-color);
+  }
+  .right {
+    float: right;
+    color: var(--deep-blue-color);
+    letter-spacing: 0.08rem;
+  }
   .comment-brief {
     background-color: var(--grey-color);
-    padding: 5px 2px;
+    padding: 5px 10px;
     border-radius: 5px;
+  }
+  .location {
+    background-color: var(--grey-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  .loc-left{
+    flex: 1;
+  }
+  .loc-right {
+    color: var(--deep-blue-color);
+    font-weight: 400;
+    padding-left: 20px;
   }
 </style>

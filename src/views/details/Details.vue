@@ -9,16 +9,18 @@
     <template v-if="houseDetailsStore.house">
         <house-swipe :house="houseDetailsStore.house" />
         <house-info :house="houseDetailsStore.house" />
+        <house-facility :house="houseDetailsStore.house"/>
+        <house-landlord :house="houseDetailsStore.house"/>
     </template>
-     
   </div>
 </template>
 
 <script setup>
   import HouseSwipe from "./cpns/HouseSwipe.vue";
   import HouseInfo from "./cpns/HouseInfo.vue";
+  import HouseLandlord from "./cpns/HouseLandlord.vue";
+  import HouseFacility from "./cpns/HouseFacility.vue";
   import router from "@/router";
-  import { computed } from "vue"
   import useHouseDetailsStore from "@/stores/modules/house/houseDetails";
   import { useRoute } from "vue-router";
   const onClickLeft = () => {
@@ -30,4 +32,10 @@
   
 </script>
 
-<style scoped></style>
+<style scoped>
+  .details {
+    background-color: #f1f3f5;
+    height: 100vh;
+    overflow-y: auto;
+  }
+</style>

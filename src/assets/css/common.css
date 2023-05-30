@@ -18,3 +18,12 @@ body {
   padding: 12px 16px;
 }
 
+.clearfix::after,
+.clearfix::before {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}

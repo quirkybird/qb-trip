@@ -56,6 +56,7 @@ import DetailsSection from "@/components/details-section/DetailsSection.vue";
     }
     .pic {
         width: 54px;
+        border-radius: 50%;
     }
     .info {
         display: flex;

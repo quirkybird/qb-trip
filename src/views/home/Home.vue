@@ -21,17 +21,15 @@ import { computed } from "vue";
   const homeListStore = useHomeListStore()
   const home = ref()
   let isTargetSrcoll = ref(false)
-  onMounted(() => {
     // 滚动到底部
     let currentPage = 1
-    const { isReachBottom, scrollTop }  = useScroll(home.value)
+    const { isReachBottom, scrollTop }  = useScroll(home)
     watch( isReachBottom, (newValue) => {
         if(newValue) {
             currentPage++
             homeListStore.fetchHouseData(currentPage)
             .then(() => isReachBottom.value = false)
         }
-    })
     
     watch(scrollTop, (newValue) => {
       isTargetSrcoll.value =  (newValue >= 450 ? true : false)

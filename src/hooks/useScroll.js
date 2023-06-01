@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted, ref } from "vue";
-
-export default function useScroll(element) {
+let element = window
+export default function useScroll(elementRef) {
     let isReachBottom = ref(false)
     let clientHeight  = ref(0)
     let scrollTop  = ref(0)
@@ -15,8 +15,14 @@ export default function useScroll(element) {
         }
         
     }
+    onMounted(() => {
+        element = elementRef.value
         element.addEventListener("scroll", scrollListHandler)
-
+    })
+    onUnmounted(() => {
+        element.removeEventListener("scroll", scrollListHandler)
+    
+    })
     return { isReachBottom, clientHeight, scrollTop, scrollHeight }
 }
 

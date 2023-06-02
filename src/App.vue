@@ -1,5 +1,7 @@
 <template>
-  <router-view/>
+  <keep-alive includes="home">
+    <router-view/>
+  </keep-alive>
   <van-overlay :show="mainStore.isLoadingShow"
    @click="mainStore.isLoadingShow = false" >
    <div class="wrapper" @click.stop>

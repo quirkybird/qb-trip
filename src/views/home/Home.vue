@@ -7,6 +7,11 @@
     <home-list/>
   </div>
 </template>
+<script>
+  export default {
+    name: "home"
+  }
+</script>
 
 <script setup>
 import { ref,onMounted,watch } from "vue";

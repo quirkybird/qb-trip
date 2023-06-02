@@ -7,21 +7,22 @@
       @click-left="onClickLeft"
     />
     <template v-if="houseDetailsStore.house">
-      <house-swipe :house="houseDetailsStore.house" />
-      <house-info :house="houseDetailsStore.house" />
-      <house-facility :house="houseDetailsStore.house" />
-      <house-landlord :house="houseDetailsStore.house" />
-      <house-comment :house="houseDetailsStore.house" />
-    </template>
+      <house-swipe :house="houseDetailsStore.house" ref="swipe" />
+      <house-info :house="houseDetailsStore.house" ref="info" />
+      <house-facility :house="houseDetailsStore.house" ref="facility" />
+      <house-landlord :house="houseDetailsStore.house" ref="landlord" />
+      <house-comment :house="houseDetailsStore.house" ref="comment" />
+      <house-map :house="houseDetailsStore.house" />
+      </template>
     <!-- 标签 -->
     <div class="vant-tab" :v-show="isTab">
-      <van-tabs @click-tab="onClickTab" v-show="isTab">
-      <van-tab title="概览"></van-tab>
-      <van-tab title="设施"></van-tab>
-      <van-tab title="房东"></van-tab>
-      <van-tab title="点评"></van-tab>
-      <van-tab title="周边"></van-tab>
-    </van-tabs>
+      <van-tabs @click-tab="scrollTo(info)" v-show="isTab">
+        <van-tab title="概览" ></van-tab>
+        <van-tab title="设施" ></van-tab>
+        <van-tab title="房东" ></van-tab>
+        <van-tab title="点评" ></van-tab>
+        <van-tab title="周边" ></van-tab>
+      </van-tabs>
     </div>
   </div>
 </template>
@@ -32,12 +33,12 @@
   import HouseLandlord from "./cpns/HouseLandlord.vue";
   import HouseFacility from "./cpns/HouseFacility.vue";
   import HouseComment from "./cpns/HouseComment.vue";
+  import HouseMap from "./cpns/HouseMap.vue"
   import router from "@/router";
   import useHouseDetailsStore from "@/stores/modules/house/houseDetails";
   import { useRoute } from "vue-router";
   import useScroll from "@/hooks/useScroll";
-  import { ref } from "vue";
-import { computed } from "vue";
+  import { ref, onMounted, computed, getCurrentInstance } from "vue";
   const onClickLeft = () => {
     router.back();
   };
@@ -48,33 +49,27 @@ import { computed } from "vue";
   // tab出现处理
   const detail = ref();
   const { scrollTop } = useScroll(detail);
-  const isTab = computed(() =>{
-   return scrollTop.value > 300
-  })
-// 
-  const sectionEls = ref({})
-  const names = computed(() => {
-    return Object.keys(sectionEls.value)
-  })
+  const isTab = computed(() => {
+    return scrollTop.value > 300;
+  });
 
-  const getSectionRef = (value) => {
-    const name = value.$el.getAttribute("name")
-    sectionEls.value[name] = value.$el
-  }
-  // 标签点击事件
-  function onClickTab() {
-    const key = Object.keys(sectionEls.value)[index]
-    const el = sectionEls.value[key]
-    let instance = el.offsetTop
-    if(index !== 0) {
-      instance = instance - 44
-    }
+  // 滚动tab-bar显示处理
+  // 获取相关组件
+  const swipe = ref(null);
+  const info = ref(null);
+  const facility = ref(null);
+  const landlord = ref(null);
+  const comment = ref(null);
 
-  detail.value.scrollTo({
-    top: instance,
-    behavior: "smooth"
-  })
-}
+  let scrollTo = () => ({})
+  onMounted(() => {
+      scrollTo = (ref) => {
+        console.log(ref.value)
+      if (ref.value) {
+        ref.value.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+  });
 </script>
 
 <style scoped>

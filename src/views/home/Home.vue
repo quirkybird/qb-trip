@@ -7,11 +7,6 @@
     <home-list/>
   </div>
 </template>
-<script>
-  export default {
-    name: "home"
-  }
-</script>
 
 <script setup>
 import { ref,onMounted,watch } from "vue";
@@ -35,7 +30,8 @@ import { computed } from "vue";
             homeListStore.fetchHouseData(currentPage)
             .then(() => isReachBottom.value = false)
         }
-    
+      })
+
     watch(scrollTop, (newValue) => {
       isTargetSrcoll.value =  (newValue >= 450 ? true : false)
     })
@@ -45,7 +41,7 @@ import { computed } from "vue";
   //   isTargetSrcoll = computed(() => {
   //     return scrollTop.value >= 450;
   // })
-  })
+
 
   
 </script>

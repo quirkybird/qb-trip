@@ -1,7 +1,9 @@
 <template>
-  <keep-alive includes="home">
-    <router-view/>
+  <router-view v-slot="{ Component }">
+  <keep-alive>
+    <component :is="Component" />
   </keep-alive>
+</router-view>
   <van-overlay :show="mainStore.isLoadingShow"
    @click="mainStore.isLoadingShow = false" >
    <div class="wrapper" @click.stop>

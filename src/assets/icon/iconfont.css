@@ -12,6 +12,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.icon-jiantou:before {
+  content: "\e7f7";
+}
+
+.icon-sousuo:before {
+  content: "\e7f8";
+}
 .icon-location:before {
   content: "\e627";
 }

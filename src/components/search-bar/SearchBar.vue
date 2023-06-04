@@ -6,7 +6,7 @@
     </div>
     <div class="right">
       <div class="search-box">关键字/位置/民宿名</div>
-      <span class="search-icon"><i class="">dada</i></span>
+      <span class="search-icon"><i class="iconfont icon-sousuo"></i></span>
     </div>
   </div>
 </template>
@@ -50,6 +50,7 @@ import { storeToRefs } from 'pinia';
   .right {
     margin-left: 1px;
     flex: 3;
+    position: relative;
   }
   .stay .leave {
     margin: 2px;
@@ -62,5 +63,14 @@ import { storeToRefs } from 'pinia';
   }
   .search-icon {
     float: right;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
   }
+  .icon-sousuo {
+    font-size: 20px;
+    color: var(--deep-blue-color);
+  }
+
 </style>

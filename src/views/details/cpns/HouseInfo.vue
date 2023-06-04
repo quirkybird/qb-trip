@@ -22,14 +22,14 @@
         <span class="comment">"{{ topModule.commentBrief.commentBrief }}"</span>
       </div>
       <div class="right">
-        <span>{{ topModule.commentBrief.totalCount }}条评论(箭头)</span>
+        <span>{{ topModule.commentBrief.totalCount }}条评论<i class="iconfont icon-jiantou"></i></span>
       </div>
     </div>
     <div class="location">
       <div class="loc-left">
         <div>{{ topModule.nearByPosition.address }}</div>
       </div>
-      <div class="loc-right">地图•周边(箭头)</div>
+      <div class="loc-right">地图•周边<i class="iconfont icon-jiantou"></i></div>
     </div>
   </div>
 </template>
@@ -77,6 +77,9 @@
   }
   .overall {
     font-size: 20px;
+  }
+  i {
+    color: var(--deep-blue-color);
   }
   .comment {
     font-weight: 300;

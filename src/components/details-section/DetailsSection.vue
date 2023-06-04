@@ -6,7 +6,7 @@
     </div>
     <div class="footer">
         <div class="cc">
-          <span class="text">{{ footerValue }}</span>
+          <span class="text">{{ footerValue }}<i class="iconfont icon-jiantou"></i></span>
         </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
   .footer {
     padding: 15px 16px;
   }
-  .footer {
+  .footer,i {
     position: relative;
     color: var(--deep-blue-color);
   }

@@ -46,6 +46,40 @@
               </div>
             </template>
           </div>
+          <div class="comment-details">
+            <div class="user-info clearfix">
+              <div class="user-left">
+                <img :src="commentData.comment.userAvatars" alt="" class="avatar">
+                <div>
+                <span>{{ commentData.comment.userName }}</span>
+                <img :src="commentData.comment?.memberLevelIcon" alt="" class="menber-level">
+                <div class="check-in-date-location font-grey">{{ commentData.comment.checkInDate }}入住</div></div>
+              </div>
+              <div class="user-right">
+                <div class="house-score-overall">{{ commentData.comment.overall }}.0</div>
+                <van-rate
+                  :model-value="Number(commentData?.comment.overall)"
+                  size="10px"
+                  color="#ffd21e"
+                  :allow-half="true"
+                  :readonly="true"
+                />
+              </div>
+            </div>
+            <div class="score-tags">
+              <tempalte v-for="tag in commentData?.comment.scoreTags">
+                <div class="tags-item"> {{ tag.title }}</div>
+              </tempalte>
+            </div>
+            <div class="comment-content">
+              {{ commentData?.comment.commentDetail }}
+            </div>
+            <div class="picture-list">
+              <template v-for="pic in commentData?.comment.pictureList">
+                <img :src="pic.url" alt="" >
+              </template>
+            </div>
+          </div>
         </div>
       </template>
     </details-section>
@@ -121,5 +155,46 @@
   } 
   .font-grey {
     color: var(--grey-font-color);
+  }
+
+  /* 详细评论 */
+  .comment-details {
+    background-color: #f7f9fb;
+    border-radius: 6px;
+  }
+  .user-info {
+    padding: 15px 0;
+  }
+  .user-left {
+    float: left;
+    display: flex;
+
+  }
+  .avatar {
+    width: 30px;
+    border-radius: 50%;
+  }
+  .menber-level {
+    height: 16px;
+  }
+  .user-right {
+    float: right;
+    text-align: end;
+  }
+
+  .score-tags {
+    display: flex;
+  }
+  .tags-item {
+    padding: 0 5px;
+  }
+  .comment-content {
+    padding: 10px 0;
+  }
+  .picture-list img {
+    padding: 0 2px;
+    width: 80px;
+    border-radius: 5px;
+    height: 80px;
   }
 </style>

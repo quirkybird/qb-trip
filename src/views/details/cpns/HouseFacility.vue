@@ -4,17 +4,24 @@
       <template #content>
         <div class="facility">
           <template v-for="(group, index) in facilityData.houseFacilitys">
-              <div
-                class="facility-data"
-                v-if="facilityData.facilitySort.includes(index)"
-              >
-                <div class="sort">
-                    <img :src="group.icon" alt="">
-                    {{ group.groupName }}</div>
-                <div class="item">
-                  <template v-for="item in group.facilitys.slice(0, 4)">
-                    <div class="facility-item">{{ item.name }}</div>
-                  </template>
+            <div
+              class="facility-data"
+              v-if="facilityData.facilitySort.includes(index)"
+            >
+              <div class="sort">
+                <img :src="group.icon" alt="" />
+                {{ group.groupName }}
+              </div>
+              <div class="item">
+                <template v-for="item in group.facilitys.slice(0, 4)">
+                  <div class="facility-item">
+                    <img
+                      class="pic"
+                      src="https://pic.tujia.com/upload/festatic/mp/check_green.png"
+                      alt=""
+                    />{{ item.name }}
+                  </div>
+                </template>
               </div>
             </div>
           </template>
@@ -68,5 +75,8 @@
   }
   .facility-item {
     flex-basis: 80px;
+  }
+  .pic {
+    width: 12px;
   }
 </style>

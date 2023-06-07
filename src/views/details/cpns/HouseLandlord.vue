@@ -47,9 +47,7 @@ import DetailsSection from "@/components/details-section/DetailsSection.vue";
 </script>
 
 <style scoped>
-    .house-landlord{
-        transform: translateY(20px);
-    }
+   
     .main>img {
         width: 100%;
         border-radius: 5px;

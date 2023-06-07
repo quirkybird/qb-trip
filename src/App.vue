@@ -1,24 +1,26 @@
 <template>
   <router-view v-slot="{ Component }">
-  <keep-alive>
-    <component :is="Component" />
-  </keep-alive>
-</router-view>
-  <van-overlay :show="mainStore.isLoadingShow"
-   @click="mainStore.isLoadingShow = false" >
-   <div class="wrapper" @click.stop>
-    <van-loading type="spinner" size="50px"/>
-  </div>
-   </van-overlay>
-  <tab-bar v-if="!route.meta.hideTabBar"/>
+    <keep-alive include="home">
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
+  <van-overlay
+    :show="mainStore.isLoadingShow"
+    @click="mainStore.isLoadingShow = false"
+  >
+    <div class="wrapper" @click.stop>
+      <van-loading type="spinner" size="50px" />
+    </div>
+  </van-overlay>
+  <tab-bar v-if="!route.meta.hideTabBar" />
 </template>
 
 <script setup>
-  import tabBar from "@/components/tab-bar/tabBar.vue"
-  import {useRoute} from "vue-router"
+  import tabBar from "@/components/tab-bar/tabBar.vue";
+  import { useRoute } from "vue-router";
   import useMainStore from "./stores/modules/mian";
-  const mainStore = useMainStore()
-  const route = useRoute()
+  const mainStore = useMainStore();
+  const route = useRoute();
 </script>
 
 <style scoped>

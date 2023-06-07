@@ -74,11 +74,11 @@
             <div class="comment-content">
               {{ commentData?.comment.commentDetail }}
             </div>
-            <div class="picture-list">
+            <!-- <div class="picture-list">
               <template v-for="pic in commentData?.comment.pictureList">
                 <img :src="pic.url" alt="" >
               </template>
-            </div>
+            </div> -->
           </div>
         </div>
       </template>
@@ -99,14 +99,11 @@
   const commentData = computed(
     () => props.house.mainPart.dynamicModule.commentModule
   );
-
   const commentTotalStr = `查看全部${commentData.value.totalCount}条评价`;
 </script>
 
 <style scoped>
-  .house-comment {
-    transform: translateY(30px);
-  }
+ 
   .score {
     padding: 12px 0;
   }

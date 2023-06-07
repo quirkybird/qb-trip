@@ -12,11 +12,15 @@
       <house-facility :house="houseDetailsStore.house" ref="facility" />
       <house-landlord :house="houseDetailsStore.house" ref="landlord" />
       <house-comment :house="houseDetailsStore.house" ref="comment" />
-      <house-map :house="houseDetailsStore.house" />
+      <house-map :house="houseDetailsStore.house" ref="map" />
       </template>
     <!-- 标签 -->
     <div class="vant-tab" :v-show="isTab">
-      <van-tabs @click-tab="scrollTo(info)" v-show="isTab">
+      <van-tabs 
+      @click-tab="scrollToContent()" 
+      v-model:active="active"
+      v-show="isTab">
+        <van-tab title="图片" ></van-tab>
         <van-tab title="概览" ></van-tab>
         <van-tab title="设施" ></van-tab>
         <van-tab title="房东" ></van-tab>
@@ -52,7 +56,7 @@
   const isTab = computed(() => {
     return scrollTop.value > 300;
   });
-
+  const active = ref(0)
   // 滚动tab-bar显示处理
   // 获取相关组件
   const swipe = ref(null);
@@ -60,16 +64,19 @@
   const facility = ref(null);
   const landlord = ref(null);
   const comment = ref(null);
-
-  let scrollTo = () => ({})
-  onMounted(() => {
-      scrollTo = (ref) => {
-        console.log(ref.value)
-      if (ref.value) {
-        ref.value.scrollIntoView({ behavior: "smooth" });
-      }
+  const map = ref(null);
+  
+  const cpnsArr = [swipe, info, facility, landlord, comment, map]
+  const scrollToContent = () => {
+        let instance = cpnsArr[active.value].value.$el.offsetTop
+        if(active.value != 1) {
+          instance -= 39
+        }
+       detail.value.scrollTo({ 
+        top: instance,
+        behavior: "smooth"
+       });
     };
-  });
 </script>
 
 <style scoped>
@@ -83,5 +90,6 @@
     top: 0;
     left: 0;
     right: 0;
+    z-index: 10;
   }
 </style>

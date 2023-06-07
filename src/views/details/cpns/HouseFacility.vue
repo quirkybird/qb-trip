@@ -46,9 +46,7 @@
 </script>
 
 <style scoped>
-  .house-facility {
-    transform: translateY(10px);
-  }
+ 
   .facility {
     background-color: #f7f9fb;
     padding: 12px;

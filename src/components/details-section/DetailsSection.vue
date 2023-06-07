@@ -27,6 +27,7 @@
 
 <style scoped>
     .details-section {
+        border-top: 5px solid #f1f3f5;
         background-color: #fff;
     }
   .header {

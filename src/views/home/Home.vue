@@ -8,6 +8,10 @@
   </div>
 </template>
 
+<script>
+  export default {name: "home"}
+</script>
+
 <script setup>
 import { ref,onMounted,watch } from "vue";
 import SearchBar from "@/components/search-bar/SearchBar.vue";

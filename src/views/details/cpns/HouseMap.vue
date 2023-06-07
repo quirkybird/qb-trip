@@ -46,9 +46,7 @@
 </script>
 
 <style scoped>
-  .house-map {
-    transform: translateY(40px);
-  }
+ 
   .map-container {
     height: 300px;
   }

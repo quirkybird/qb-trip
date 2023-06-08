@@ -20,7 +20,6 @@
       @click-tab="scrollToContent()" 
       v-model:active="active"
       v-show="isTab">
-        <van-tab title="图片" ></van-tab>
         <van-tab title="概览" ></van-tab>
         <van-tab title="设施" ></van-tab>
         <van-tab title="房东" ></van-tab>
@@ -43,6 +42,7 @@
   import { useRoute } from "vue-router";
   import useScroll from "@/hooks/useScroll";
   import { ref, onMounted, computed, getCurrentInstance } from "vue";
+import { watch } from "vue";
   const onClickLeft = () => {
     router.back();
   };
@@ -56,27 +56,54 @@
   const isTab = computed(() => {
     return scrollTop.value > 300;
   });
-  const active = ref(0)
+  const active = ref(4)
   // 滚动tab-bar显示处理
   // 获取相关组件
-  const swipe = ref(null);
   const info = ref(null);
   const facility = ref(null);
   const landlord = ref(null);
   const comment = ref(null);
   const map = ref(null);
-  
-  const cpnsArr = [swipe, info, facility, landlord, comment, map]
+  // 点击tab栏滚动到相应位置
+  const cpnsArr = [info, facility, landlord, comment, map]
+
+  let isClick = false
+  let currentTop = -1
   const scrollToContent = () => {
-        let instance = cpnsArr[active.value].value.$el.offsetTop
-        if(active.value != 1) {
-          instance -= 39
+        let top = cpnsArr[active.value].value.$el.offsetTop
+        if(active.value != 0) {
+            top -= 39
         }
+
+        isClick = true
+        currentTop = top
        detail.value.scrollTo({ 
-        top: instance,
+        top,
         behavior: "smooth"
        });
     };
+    
+  // 滚动，切换到相应的bar
+    watch(scrollTop,(newvalue) => {
+    const value = cpnsArr.map((item, index) => {
+      console.log(currentTop + "c")
+      console.log(newvalue + "n")
+      if(currentTop === newvalue) isClick = false
+      if(isClick) return
+
+        if(index != 0) {
+         return item.value.$el.offsetTop - 44
+        } else {
+         return item.value.$el.offsetTop
+        }
+    })
+      for(let i = 0; i < value.length; i++) {
+          if(value[i] >= newvalue) {
+            active.value = i - 1
+            break;
+          }
+      }
+      })
 </script>
 
 <style scoped>

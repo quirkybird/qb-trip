@@ -33,7 +33,7 @@
               </template>
             </div>
           </div>
-          <div class="commentTags">
+          <!-- <div class="commentTags">
             <template
               v-for="(tag, index) in commentData.commentTagVo"
               :key="index"
@@ -45,7 +45,7 @@
                 {{ tag.text }}
               </div>
             </template>
-          </div>
+          </div> -->
           <div class="comment-details">
             <div class="user-info clearfix">
               <div class="user-left">
@@ -55,7 +55,7 @@
                 <img :src="commentData.comment?.memberLevelIcon" alt="" class="menber-level">
                 <div class="check-in-date-location font-grey">{{ commentData.comment.checkInDate }}入住</div></div>
               </div>
-              <div class="user-right">
+              <!-- <div class="user-right">
                 <div class="house-score-overall">{{ commentData.comment.overall }}.0</div>
                 <van-rate
                   :model-value="Number(commentData?.comment.overall)"
@@ -64,13 +64,13 @@
                   :allow-half="true"
                   :readonly="true"
                 />
-              </div>
+              </div> -->
             </div>
-            <div class="score-tags">
+            <!-- <div class="score-tags">
               <tempalte v-for="tag in commentData?.comment.scoreTags">
                 <div class="tags-item"> {{ tag.title }}</div>
               </tempalte>
-            </div>
+            </div> -->
             <div class="comment-content">
               {{ commentData?.comment.commentDetail }}
             </div>
